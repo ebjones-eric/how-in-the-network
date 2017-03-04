@@ -7,4 +7,9 @@ Demonstration based training on network traffic and traffic analyzation.
 
 https://how-in-the-network.s3.amazonaws.com/client%2Bserver_vms.zip
 
+2.) boot both VMs and log into each of them.  The username and password is the same on client and server.
 
+Username: netadmin
+Password: 1234abcd
+
+3.) Follow the instructions included in each lab folder.
