@@ -1,0 +1,66 @@
+How in the network? - Practice Lab #1 |  Recording and Anylizing a simple packet capture
+----------------------------------------------------------------------------------------
+
+Instructions:
+
+1.) Start up your client and server vms in a desktop vm application (i.e. vmwareware viewer, virtualbox ...) as described in the initial README of this project. (once started you can SSH into machines from your host if you want to be able to copy/past text to and from your host)
+
+2.) Using your vm software ensure each vm is configured to be automaticaly assigned a local ip address with internet sharing through the host pc via NAT. (we'll want to be able to ssh from the host pc to pull pcaps down)
+
+3.) Verify you have a local ip address and record the name of the interface being used for the network by runing:
+
+		$ ifconfig
+
+	(correct interface should have a privite ipv4 address attached to it)
+
+4.) On the client VM create a new directory; /data/pcap/ by running the command:
+
+		$ sudo mkdir -p /data/pcap
+
+	(-p creates the parent folder data if nessisary)
+
+
+5.) On the server vm, run the following command to initiate server process and note the ip returned (should be valid local ip and not loopback address):
+
+		$ run-server
+
+6.) On the client vm begin recording traffic by running the following command:
+	
+		$ sudo tcpdump -i <int> -w /data/pcap/`date +%m-%d-%y_%H:%M:%S`.pcap &
+
+	(& puts process in background, pressing enter shows your normal prompt and capture is continuing in background.
+	 if you see any traffic at this point, it is from your host pc.  stop the traffic on your host by disconnecting network or closing applications as it is not part of this demo) 
+
+7.) Now that we are capturing traffic, run the client with the following command:
+
+		$ run-client
+
+	(you will see the traffic output to your screen.  it is also being stored in you file in /data/pcap)
+
+8.) If the connection between the client and the server terminates all traffic will stop and the client process with quit.  When this happens run the following command to return to your background process:
+
+		$ fg
+
+9.) Stop recording traffic by sending a kill signal:
+
+		[Ctrl] + c
+
+10.) On your host pc install (if not already) and launch wireshark.
+
+11.) User the following guide to setup your view in wireshark:
+		
+		http://www.malware-traffic-analysis.net/tutorials/wireshark/index.html
+
+12.) SCP your pcap file from your vm to your host and open it in wireshark.
+
+
+Lab Questions:
+
+a.) From the pcap you are looking at, who sent the last packet; the client or the server?
+
+b.) How many times did the client send a packet to keep the connection alive after the inital connection?
+
+c.) List the name of each type of packet recorded in this pcap.
+
+	i.) what is the definition of this type of packet?
+	ii.) what is it used for/what does it do?
