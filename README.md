@@ -13,3 +13,10 @@ Username: netadmin
 Password: 1234abcd
 
 3.) Follow the instructions included in each lab folder.
+
+
+##############
+
+New VM for Part 2: https://how-in-the-network.s3.amazonaws.com/client_vm_001h%202.zip
+
+##############
